@@ -1,0 +1,23 @@
+Minimum Viable Product.
+
+Instalace:
+1) Nakopírovat soubory do zvoleného umístění na webserveru.
+2) Vyplnit položky v config.php.
+3) V příslušné databázi vytvořit tabulku:
+CREATE TABLE `forecast` (
+  `day` varchar(11) NOT NULL,
+  `min` int(2) NOT NULL,
+  `max` int(2) NOT NULL,
+  PRIMARY KEY (`day`)
+);
+4) [volitelně] Spustit update.php pro prvotní naplnění databáze daty.
+
+Soubory:
+* update.php - updatuje databázi o aktuální předpověď
+** podle upřesnění od zadavatele se pouze přidávají nové dny, předpovědi pro již uložené se neaktualizují
+** může být spuštěno i konzolově i přes web
+* chart.php - zobrazení grafu a selectu (potažmo teplotami)
+** v grafu ponechány maxima i minima pro jednodušší kontrolu správnosti AJAXem dotažených dat
+* config.php - přístupové údaje do databáze; v reálném provozu by se soubor nacházel mimo webroot
+** předvyplněna typ databáze MySQL, na níž bylo testováno
+* ajax.php - rutina poskytující JSON data skriptu spuštěnému po výběru data na stránce chart.php
